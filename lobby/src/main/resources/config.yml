@@ -1,0 +1,125 @@
+# ==========================================================
+#                    LobbySystem - config.yml
+# ==========================================================
+# Alle Texte unterstützen MiniMessage: https://docs.advntr.dev/minimessage/format.html
+# Die Gamemodes selbst werden im Ordner "gamemodes/" konfiguriert (eine Datei pro Gamemode).
+# Eigene Gamemode-Lobbys (Welten) werden in den Ordner "lobbies/" hochgeladen.
+
+# ----------------------------------------------------------
+# Main-Lobby (Standard-Map des Lobby-Servers)
+# ----------------------------------------------------------
+main-lobby:
+  # Name der Welt. Leer = Standardwelt des Servers (level-name aus server.properties)
+  world: ""
+  # Eigener Spawnpunkt. Mit /ls setmainspawn im Spiel setzen.
+  spawn:
+    use-custom: false
+    x: 0.5
+    y: 100.0
+    z: 0.5
+    yaw: 0.0
+    pitch: 0.0
+  # Spieler beim Joinen zum Main-Lobby-Spawn teleportieren
+  teleport-on-join: true
+  # Inventar beim Joinen leeren
+  clear-inventory-on-join: true
+  # Uhrzeit festsetzen (z.B. 6000 = Mittag). -1 = aus
+  time-lock: 6000
+  # Immer klares Wetter
+  weather-lock: true
+
+# ----------------------------------------------------------
+# Kompass (Gamemode-Switcher)
+# ----------------------------------------------------------
+compass:
+  # Hotbar-Slot 1-9
+  slot: 5
+  material: COMPASS
+  name: "<gold><bold>Spielmodi</bold></gold> <dark_gray>» <gray>Rechtsklick"
+  lore:
+    - "<gray>Wähle einen Spielmodus aus."
+  glow: false
+  # true = Kompass kann von NIEMANDEM verschoben/gedroppt werden (auch nicht von Admins)
+  locked: true
+  # true = Kompass in allen Welten, false = nur in der Main-Lobby und in Gamemode-Lobbys
+  everywhere: false
+
+# ----------------------------------------------------------
+# Menü
+# ----------------------------------------------------------
+menu:
+  title: "<dark_gray>» <gold><bold>Spielmodi</bold></gold>"
+  # Größe des Menüs:
+  #   auto = Größe passt sich dynamisch an die Anzahl der Gamemodes an
+  #   1-6  = feste Anzahl Reihen
+  rows: auto
+  # Anordnung für Gamemodes OHNE festen Slot (slot: -1):
+  #   centered = jede Reihe wird mittig ausgerichtet
+  #   fill     = einfach von links nach rechts auffüllen
+  layout: centered
+  # Max. Icons pro Reihe bei "centered" (1-9)
+  max-per-row: 7
+  # Bei "centered" mit wenigen Icons: Lücke zwischen den Icons lassen (sieht luftiger aus)
+  spacing: true
+  # Bei rows: auto eine leere Reihe oben und unten (nur wenn Platz ist)
+  padding: true
+  # Icons ausblenden, wenn der Spieler die Permission des Gamemodes nicht hat
+  hide-without-permission: true
+  # Menü nach Klick schließen
+  close-on-click: true
+  # Aktualisierung der Spielerzahlen im offenen Menü (in Sekunden)
+  update-interval: 2
+
+# ----------------------------------------------------------
+# Lobby-Schutz (gilt in der Main-Lobby und allen Gamemode-Lobbys)
+# Spieler mit "lobbysystem.bypass" sind ausgenommen.
+# ----------------------------------------------------------
+protection:
+  enabled: true
+  no-damage: true
+  no-hunger: true
+  no-build: true
+  no-item-drop: true
+  # Spieler, die ins Void fallen, zum Spawn der Welt teleportieren
+  void-teleport: true
+
+# ----------------------------------------------------------
+# Spielerzahlen der Gamemode-Server
+# Auf jeden Gamemode-Server kommt das Plugin "LobbyBridge". Es meldet
+# seine Spielerzahl per HTTP an diesen Lobby-Server.
+# ----------------------------------------------------------
+player-counts:
+  enabled: true
+  # Adresse/Port, auf dem der Lobby-Server die Meldungen annimmt.
+  # Port muss für die Gamemode-Server erreichbar sein (NICHT öffentlich freigeben nötig, wenn alles im selben Netz läuft).
+  bind-address: "0.0.0.0"
+  port: 8765
+  # Laufen mehrere Lobbys auf demselben Host, ist der Port schon belegt.
+  # Dann wird automatisch der nächste freie genommen: 8765, 8766, ... (so viele wie hier angegeben).
+  # In der LobbyBridge dann einen Bereich eintragen, z.B. "http://192.168.1.10:8765-8769"
+  port-range: 5
+  # Gemeinsames Passwort - muss in der LobbyBridge-Config identisch sein!
+  token: "BITTE-AENDERN"
+  # Nach wie vielen Sekunden ohne Meldung gilt ein Server als offline
+  timeout-seconds: 15
+
+# ----------------------------------------------------------
+# Nachrichten
+# ----------------------------------------------------------
+messages:
+  prefix: "<dark_gray>[<gold>Lobby</gold>]</dark_gray> "
+  teleported: "<gray>Du wurdest zu <gold>%name%</gold> <gray>teleportiert."
+  connecting: "<gray>Du wirst mit <gold>%name%</gold> <gray>verbunden..."
+  main-lobby: "<gray>Du bist jetzt in der <gold>Main-Lobby</gold><gray>."
+  world-not-found: "<red>Das Ziel von <gold>%name%</gold> <red>ist gerade nicht verfügbar."
+  no-permission: "<red>Dazu hast du keine Rechte."
+  reloaded: "<green>LobbySystem wurde neu geladen. <gray>(%count% Gamemodes)"
+  spawn-set: "<green>Spawn für <gold>%name%</gold> <green>wurde gesetzt."
+  main-spawn-set: "<green>Main-Lobby-Spawn wurde gesetzt."
+  unknown-gamemode: "<red>Unbekannter Gamemode: <gold>%id%"
+  only-players: "<red>Nur für Spieler."
+  # Platzhalter-Werte im Menü
+  value-offline: "<red>Offline"
+  value-none: "<gray>-"
+  status-online: "<green>● Online"
+  status-offline: "<red>● Offline"

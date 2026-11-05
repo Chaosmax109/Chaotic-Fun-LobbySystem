@@ -1,0 +1,17 @@
+name: LobbyBridge
+version: '${version}'
+main: de.lobbysystem.bridge.LobbyBridge
+api-version: '26.2'
+description: Meldet die Spielerzahl dieses Gamemode-Servers an den/die Lobby-Server (LobbySystem)
+authors: [LobbySystem]
+
+commands:
+  lobbybridge:
+    description: Status / Reload der LobbyBridge
+    aliases: [lb]
+    permission: lobbybridge.admin
+    usage: /lobbybridge <status|reload>
+
+permissions:
+  lobbybridge.admin:
+    default: op

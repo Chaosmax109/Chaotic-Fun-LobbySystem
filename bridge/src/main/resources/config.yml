@@ -1,0 +1,48 @@
+# ==========================================================
+#                 LobbyBridge - config.yml
+# ==========================================================
+# Dieses Plugin kommt auf jeden GAMEMODE-Server (nicht auf die Lobby!).
+# Es meldet regelmäßig, wie viele Spieler hier gerade spielen.
+
+# Muss mit "api-id" in der Gamemode-Datei der Lobby übereinstimmen
+# (z.B. plugins/LobbySystem/gamemodes/bedwars.yml -> api-id: "bedwars")
+gamemode-id: "bedwars"
+
+# Eindeutiger Name dieses Servers. Mehrere Server mit derselben gamemode-id
+# werden in der Lobby zusammengezählt - dafür MUSS jeder Server einen anderen Namen haben,
+# sonst überschreiben sie sich gegenseitig!
+#
+# Leer lassen = automatisch eindeutig ("%gamemode%-%hostname%-%port%") -> ideal für Templates.
+# Platzhalter:
+#   %gamemode%   gamemode-id
+#   %hostname%   Hostname (in Docker/Pterodactyl pro Container eindeutig)
+#   %ip%         lokale IP
+#   %port%       Minecraft-Port dieses Servers
+#   %random%     Zufalls-ID, neu bei jedem Serverstart
+#   %env:NAME%   Umgebungsvariable, z.B. %env:P_SERVER_UUID% (Pterodactyl)
+server-name: ""
+
+# Adresse(n), unter denen Lobbys erreichbar sein KÖNNEN (IP + "player-counts.port" aus der LobbySystem-Config).
+# Es wird an ALLE gesendet - so bekommen auch mehrere Lobbys gleichzeitig die Spielerzahl.
+# Eine Warnung kommt nur, wenn KEINE Adresse erreichbar ist.
+#
+# Port-Bereich "8765-8769": Laufen mehrere Lobbys auf demselben Host, nimmt jede
+# automatisch den nächsten freien Port (siehe "port-range" in der LobbySystem-Config).
+#
+# Wichtig: Die echte LAN-IP verwenden, nicht 127.0.0.1.
+lobby-urls:
+  - "http://192.168.1.10:8765-8769"
+  - "http://192.168.1.11:8765-8769"
+
+# Muss identisch mit "player-counts.token" in der LobbySystem-Config sein
+token: "BITTE-AENDERN"
+
+# Wie oft die Spielerzahl gesendet wird (Sekunden). Muss kleiner als
+# "timeout-seconds" in der Lobby sein. Bei Join/Quit wird zusätzlich sofort gesendet.
+interval-seconds: 5
+
+# Spieler im Zuschauermodus nicht mitzählen
+ignore-spectators: false
+
+# Fehler beim Senden in der Konsole anzeigen
+log-errors: true

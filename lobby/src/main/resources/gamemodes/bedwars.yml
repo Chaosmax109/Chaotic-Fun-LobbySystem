@@ -1,0 +1,59 @@
+# ==========================================================
+#  Gamemode: BedWars  (Beispiel: Teleport zu einer festen Position)
+# ==========================================================
+# Dateiname (ohne .yml) = ID des Gamemodes (z.B. für /ls setspawn bedwars)
+enabled: true
+
+# Anzeigename (MiniMessage)
+display-name: "<red><bold>BedWars</bold></red>"
+
+# Reihenfolge im Menü (kleiner = weiter vorne). Wird genutzt, wenn slot: -1
+order: 1
+# Fester Slot im Menü (0 = oben links, 8 = oben rechts, 9 = 2. Reihe links ...). -1 = automatisch
+slot: -1
+
+# Optionale Permission, um den Gamemode zu sehen/benutzen. Leer = jeder
+permission: ""
+
+icon:
+  material: RED_BED
+  amount: 1
+  glow: false
+  # Optional: eigenes Item-Model aus einem Resourcepack (z.B. "meinpack:bedwars"). Leer = aus
+  item-model: ""
+  # Platzhalter:
+  #   %name%           Anzeigename
+  #   %lobby_players%  Spieler in der eigenen Lobby-Welt (nur bei type LOBBY_WORLD / MAIN_LOBBY)
+  #   %playing%        Spieler auf den Gamemode-Servern (über LobbyBridge, braucht api-id)
+  #   %servers%        Anzahl Gamemode-Server, die online sind
+  #   %total%          %lobby_players% + %playing%
+  #   %status%         Online/Offline-Status der Gamemode-Server
+  # Zeilen mit Platzhaltern, die für diesen Gamemode keinen Sinn ergeben, werden automatisch ausgeblendet.
+  lore:
+    - ""
+    - "<gray>Verteidige dein Bett!"
+    - ""
+    - "<gray>In der Lobby: <white>%lobby_players%"
+    - "<gray>Spielen gerade: <white>%playing%"
+    - "%status%"
+    - ""
+    - "<yellow>» Klicken zum Teleportieren"
+
+target:
+  # LOBBY_WORLD = eigene Lobby-Welt (Ordner "lobbies/")
+  # LOCATION    = feste Position (world + x/y/z/yaw/pitch)
+  # SERVER      = über BungeeCord/Velocity auf einen anderen Server verbinden
+  # MAIN_LOBBY  = zurück in die Main-Lobby
+  type: LOCATION
+  # Leer = Main-Lobby-Welt
+  world: ""
+  x: 100.5
+  y: 65.0
+  z: 100.5
+  yaw: 0.0
+  pitch: 0.0
+  # Nur bei type SERVER: Servername aus der Proxy-Config
+  server: ""
+
+# ID, unter der die Gamemode-Server (LobbyBridge) ihre Spielerzahl melden. Leer = keine Spielerzahl
+api-id: "bedwars"

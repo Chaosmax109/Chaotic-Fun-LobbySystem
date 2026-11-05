@@ -1,0 +1,47 @@
+# ==========================================================
+#  Gamemode: %NAME%  (automatisch erstellt aus lobbies/%FOLDER%)
+# ==========================================================
+# Diese Datei wurde beim Start erstellt, weil im Ordner "lobbies/" eine neue Welt gefunden wurde.
+# Passe Anzeigename, Icon, Position im Menü usw. nach Belieben an und mache /ls reload.
+enabled: true
+display-name: "<gold><bold>%NAME%</bold></gold>"
+order: %ORDER%
+slot: -1
+permission: ""
+
+icon:
+  material: GRASS_BLOCK
+  amount: 1
+  glow: false
+  item-model: ""
+  lore:
+    - ""
+    - "<gray>In der Lobby: <white>%lobby_players%"
+    - "<gray>Spielen gerade: <white>%playing%"
+    - "%status%"
+    - ""
+    - "<yellow>» Klicken zum Teleportieren"
+
+target:
+  type: LOBBY_WORLD
+  # Name der geladenen Welt (Ordner im Server-Verzeichnis)
+  world: "%WORLD%"
+  # true = Spawnpunkt der Welt benutzen; false = x/y/z unten (mit /ls setspawn %ID% im Spiel setzen)
+  use-world-spawn: true
+  x: 0.5
+  y: 100.0
+  z: 0.5
+  yaw: 0.0
+  pitch: 0.0
+
+# ID, unter der die Gamemode-Server (LobbyBridge) ihre Spielerzahl melden. Leer = keine
+api-id: "%ID%"
+
+lobby-world:
+  # true = beim nächsten Start die Welt erneut aus lobbies/%FOLDER% kopieren (überschreibt Änderungen!)
+  # Wird danach automatisch wieder auf false gesetzt.
+  reimport-on-next-start: false
+  # Uhrzeit festsetzen (-1 = aus)
+  time-lock: 6000
+  weather-lock: true
+  difficulty: PEACEFUL

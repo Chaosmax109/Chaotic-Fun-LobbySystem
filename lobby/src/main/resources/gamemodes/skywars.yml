@@ -1,0 +1,28 @@
+# ==========================================================
+#  Gamemode: SkyWars  (Beispiel: Verbinden über Proxy)
+# ==========================================================
+enabled: true
+display-name: "<aqua><bold>SkyWars</bold></aqua>"
+order: 2
+slot: -1
+permission: ""
+
+icon:
+  material: FEATHER
+  amount: 1
+  glow: true
+  item-model: ""
+  lore:
+    - ""
+    - "<gray>Kämpfe auf schwebenden Inseln!"
+    - ""
+    - "<gray>Spielen gerade: <white>%playing%"
+    - "<gray>Server online: <white>%servers%"
+    - ""
+    - "<yellow>» Klicken zum Verbinden"
+
+target:
+  type: SERVER
+  server: "skywars-1"
+
+api-id: "skywars"

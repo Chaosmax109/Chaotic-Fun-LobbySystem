@@ -1,0 +1,28 @@
+name: LobbySystem
+version: '${version}'
+main: de.lobbysystem.lobby.LobbyPlugin
+api-version: '26.2'
+description: Lobby mit Kompass-Gamemode-Switcher, eigenen Gamemode-Lobbys und Live-Spielerzahlen
+authors: [LobbySystem]
+
+commands:
+  lobby:
+    description: Teleportiert dich in die Main-Lobby
+    aliases: [hub, l, spawn]
+    permission: lobbysystem.lobby
+  lobbysystem:
+    description: Admin-Befehle des LobbySystems
+    aliases: [ls]
+    permission: lobbysystem.admin
+    usage: /lobbysystem <reload|setspawn|setmainspawn|list|menu>
+
+permissions:
+  lobbysystem.lobby:
+    description: /lobby benutzen
+    default: true
+  lobbysystem.admin:
+    description: Admin-Befehle
+    default: op
+  lobbysystem.bypass:
+    description: Lobby-Schutz umgehen (Bauen, Schaden, Items droppen) - gilt NICHT für den Kompass
+    default: false
